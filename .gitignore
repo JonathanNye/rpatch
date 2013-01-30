@@ -1,0 +1,30 @@
+*.DS_Store
+
+# Android
+gen/
+local.properties
+out/
+bin/
+lint.xml
+classes/
+*.log
+
+# Maven
+gen-external-apklibs/
+target/
+pom.xml.releaseBackup
+release.properties
+tmp/
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+*.eml
+.idea/
+
+# Eclipse
+.settings/
+*.userlibraries
+.classpath
+.project
