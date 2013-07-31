@@ -37,11 +37,11 @@ public class MainActivity extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.main_activity);
         patchContainer = findViewById(R.id.rpatch_container);
         scrollView = (ScrollView) findViewById(R.id.scrollview);
-        patchContainer.setOnTouchListener(new View.OnTouchListener() {
 
+        patchContainer.setOnTouchListener(new View.OnTouchListener() {
             float origX;
             float origY;
             int origWidth;
