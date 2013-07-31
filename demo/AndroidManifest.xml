@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:versionCode="1"
         android:versionName="0.9-SNAPSHOT"
         package="com.github.jonathannye.demo">
 
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="16"/>
+    <uses-sdk
+            android:minSdkVersion="7"
+            android:targetSdkVersion="18"/>
 
-    <application>
-        <activity android:name=".MainActivity" android:label="RPatch Demo">
+    <application
+            android:label="RPatch Demo"
+            android:icon="@drawable/ic_launcher"
+            android:theme="@style/Theme.Sherlock.Light.DarkActionBar">
+        <activity
+                android:name=".MainActivity"
+                android:label="RPatch Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

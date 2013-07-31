@@ -10,7 +10,6 @@ import android.view.View;
 // Date: 2/2/13
 // Time: 9:31 AM
 // Copyright (c) 2013 WillowTree Apps, Inc. All rights reserved.
-
 public class MainActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
@@ -19,8 +18,8 @@ public class MainActivity extends Activity {
 
         View container = findViewById(R.id.main_demo_container);
 
-        RPatch test = new RPatch(this, R.drawable.test_rpatch);
-        test.setRepeatFlags(RPatch.REPEAT_INNER_BOTH);
+        RPatch test = new RPatch(this, R.drawable.stamp);
+        test.setRepeatFlags(RPatch.REPEAT_INNER_BOTH | RPatch.REPEAT_OUTER_ALL);
         container.setBackground(test);
     }
 }
