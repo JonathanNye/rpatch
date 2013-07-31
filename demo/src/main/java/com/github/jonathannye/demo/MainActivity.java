@@ -1,8 +1,8 @@
 package com.github.jonathannye.demo;
 
+import com.actionbarsherlock.app.SherlockActivity;
 import com.github.jonathannye.rpatch.RPatch;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -17,7 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 
-public class MainActivity extends Activity {
+public class MainActivity extends SherlockActivity {
+
     int patchIdx = -1;
 
     View patchView;
@@ -48,7 +49,7 @@ public class MainActivity extends Activity {
 
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch(motionEvent.getAction()) {
+                switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         view.getParent().requestDisallowInterceptTouchEvent(true);
                         origX = motionEvent.getX();
@@ -61,7 +62,7 @@ public class MainActivity extends Activity {
                         float dy = motionEvent.getY() - origY;
                         ViewGroup.LayoutParams newParams = view.getLayoutParams();
                         newParams.width = origWidth + (int) dx;
-                        newParams.height = origHeight + (int)dy;
+                        newParams.height = origHeight + (int) dy;
                         view.setLayoutParams(newParams);
                         break;
                     case MotionEvent.ACTION_UP:
@@ -78,7 +79,7 @@ public class MainActivity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 drawPatchCentered = b;
-                ((RPatch)patchView.getBackground()).setDrawCentered(drawPatchCentered);
+                ((RPatch) patchView.getBackground()).setDrawCentered(drawPatchCentered);
                 patchView.invalidate();
 
             }
@@ -90,7 +91,7 @@ public class MainActivity extends Activity {
         repeatBehaviorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch(i) {
+                switch (i) {
                     case 0:
                         repeatBehavior = RPatch.REPEAT_MODE_DISCRETE;
                         break;
@@ -98,13 +99,14 @@ public class MainActivity extends Activity {
                         repeatBehavior = RPatch.REPEAT_MODE_CUTOFF;
                         break;
                 }
-                ((RPatch)patchView.getBackground()).setRepeatFlags(
+                ((RPatch) patchView.getBackground()).setRepeatFlags(
                         innerRepeatMode | outerRepeatMode | repeatBehavior);
                 patchView.invalidate();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
         });
 
         innerRepeatSpinner = (Spinner) findViewById(R.id.inner_repeat_spinner);
@@ -113,7 +115,7 @@ public class MainActivity extends Activity {
         innerRepeatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch(i) {
+                switch (i) {
                     case 0:
                         innerRepeatMode = RPatch.REPEAT_INNER_BOTH;
                         break;
@@ -127,13 +129,14 @@ public class MainActivity extends Activity {
                         innerRepeatMode = RPatch.REPEAT_INNER_NONE;
                         break;
                 }
-                ((RPatch)patchView.getBackground()).setRepeatFlags(
+                ((RPatch) patchView.getBackground()).setRepeatFlags(
                         innerRepeatMode | outerRepeatMode | repeatBehavior);
                 patchView.invalidate();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
         });
 
         outerRepeatSpinner = (Spinner) findViewById(R.id.outer_repeat_spinner);
@@ -143,7 +146,7 @@ public class MainActivity extends Activity {
         outerRepeatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch(i) {
+                switch (i) {
                     case 0:
                         outerRepeatMode = RPatch.REPEAT_OUTER_ALL;
                         break;
@@ -163,12 +166,13 @@ public class MainActivity extends Activity {
                         outerRepeatMode = RPatch.REPEAT_OUTER_BOTTOM;
                         break;
                 }
-                ((RPatch)patchView.getBackground()).setRepeatFlags(innerRepeatMode | outerRepeatMode | repeatBehavior);
+                ((RPatch) patchView.getBackground()).setRepeatFlags(innerRepeatMode | outerRepeatMode | repeatBehavior);
                 patchView.invalidate();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
         });
         // To reflect the default state
         outerRepeatSpinner.setSelection(1);
@@ -178,10 +182,10 @@ public class MainActivity extends Activity {
     public void nextDrawable(View v) {
         int drawableId;
         patchIdx++;
-        if(patchIdx >= 3) {
+        if (patchIdx >= 3) {
             patchIdx = 0;
         }
-        switch(patchIdx) {
+        switch (patchIdx) {
             case 0:
                 drawableId = R.drawable.test_rpatch;
                 break;
@@ -202,9 +206,10 @@ public class MainActivity extends Activity {
 
         ViewGroup dbgContainer = (ViewGroup) findViewById(R.id.debug_patch_container);
         dbgContainer.removeAllViews();
-        for(int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
             ImageView iv = new ImageView(this);
-            iv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            iv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
             iv.setBackgroundColor(0xffff0000);
             iv.setPadding(10, 10, 10, 10);
             iv.setScaleType(ImageView.ScaleType.CENTER);
@@ -224,7 +229,7 @@ public class MainActivity extends Activity {
     private void modifyPatchSize(boolean increase) {
         int mod = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
         int newSize = patchContainer.getWidth() + (increase ? mod : mod * -1);
-        if(newSize > mod * 50 || newSize < mod * 3) {
+        if (newSize > mod * 50 || newSize < mod * 3) {
             return;
         }
         ViewGroup.LayoutParams newParams = patchContainer.getLayoutParams();
