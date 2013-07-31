@@ -1,4 +1,4 @@
-package com.github.rpatch;
+package com.github.jonathannye.rpatch;
 
 import android.content.Context;
 import android.graphics.Bitmap;

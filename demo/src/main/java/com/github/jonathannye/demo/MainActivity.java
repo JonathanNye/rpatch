@@ -1,6 +1,6 @@
-package com.github.rpatch.demo;
+package com.github.jonathannye.demo;
 
-import com.github.rpatch.RPatch;
+import com.github.jonathannye.rpatch.RPatch;
 
 import android.app.Activity;
 import android.os.Bundle;
