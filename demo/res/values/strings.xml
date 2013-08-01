@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RPatch Demo</string>
+
+    <string name="dots">Dots</string>
+    <string name="squiggles">Squiggles</string>
+    <string name="notepad">Notepad</string>
+    <string name="stamp">Stamp</string>
+
+    <string name="rpatch_segments">RPATCH SEGMENTS</string>
+    <string name="emdash">—</string>
+    <string name="plus">+</string>
+    <string name="center_rpatch">Center RPatch in container</string>
+    <string name="inner_repeat_option">INNER REPEAT OPTION</string>
+    <string name="outer_repeat_options">OUTER REPEAT OPTION(S)</string>
+    <string name="repeat_behavior">REPEAT BEHAVIOR</string>
+    <string name="both">BOTH</string>
+    <string name="x">X</string>
+    <string name="y">Y</string>
+    <string name="none">NONE</string>
+    <string name="all">ALL</string>
+    <string name="left">LEFT</string>
+    <string name="right">RIGHT</string>
+    <string name="top">TOP</string>
+    <string name="bottom">BOTTOM</string>
+    <string name="discrete">DISCRETE</string>
+    <string name="cutoff">CUTOFF</string>
+</resources>

@@ -1,70 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/scrollview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+<ScrollView
+        style="@style/Match"
+        xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        >
-
-    <LinearLayout
-            android:id="@+id/debug_patch_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="20dp"
-            android:background="#333">
-    </LinearLayout>
-
+            style="@style/MatchWidth"
+            android:orientation="vertical"
+            android:padding="8dp">
         <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                style="@style/MatchWidth">
             <Button
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:text="-"
+                    style="@style/Wrap"
+                    android:text="@string/emdash"
                     android:onClick="decreaseViewSizeClicked"/>
             <Button
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:text="+"
-                    android:onClick="increaseViewSizeClicked"/>
-
-            <CheckBox
-                    android:id="@+id/centering_check"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/next_drawable"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Center"/>
+                    android:layout_weight="1"
+                    android:text="@string/app_name"
+                    android:onClick="nextDrawable"/>
+            <Button
+                    style="@style/Wrap"
+                    android:text="@string/plus"
+                    android:onClick="increaseViewSizeClicked"/>
         </LinearLayout>
         <FrameLayout
                 android:id="@+id/rpatch_container"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="8dp"
                 android:background="#803">
             <View
                     android:id="@+id/rpatch_view"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"/>
         </FrameLayout>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next Drawable"
-                android:onClick="nextDrawable"/>
-        <Spinner
-                android:id="@+id/inner_repeat_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <Spinner
-                android:id="@+id/outer_repeat_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <Spinner
-                android:id="@+id/repeat_behavior_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+        <CheckBox
+                style="@style/Wrap"
+                android:id="@+id/centering_check"
+                android:layout_marginTop="4dp"
+                android:text="@string/center_rpatch"/>
+        <TextView
+                style="@style/HeaderTextView"
+                android:paddingTop="16dp"
+                android:paddingBottom="4dp"
+                android:text="@string/inner_repeat_option"/>
+        <LinearLayout
+                style="@style/MatchWidth"
+                android:background="@drawable/check_text_view_group_bg">
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/i_both"
+                    android:text="@string/both"/>
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/i_x"
+                    android:text="@string/x"/>
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/i_y"
+                    android:text="@string/y"/>
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/i_none"
+                    android:text="@string/none"/>
+        </LinearLayout>
+        <TextView
+                style="@style/HeaderTextView"
+                android:paddingTop="16dp"
+                android:paddingBottom="4dp"
+                android:text="@string/outer_repeat_options"/>
+        <LinearLayout
+                style="@style/MatchWidth"
+                android:background="@drawable/check_text_view_group_bg">
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/o_all"
+                    android:text="@string/all"/>
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/o_none"
+                    android:text="@string/none"/>
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/o_left"
+                    android:text="@string/left"/>
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/o_right"
+                    android:text="@string/right"/>
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/o_top"
+                    android:text="@string/top"/>
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/o_bottom"
+                    android:text="@string/bottom"/>
+        </LinearLayout>
+        <TextView
+                style="@style/HeaderTextView"
+                android:paddingTop="16dp"
+                android:paddingBottom="4dp"
+                android:text="@string/repeat_behavior"/>
+        <LinearLayout
+                style="@style/MatchWidth"
+                android:background="@drawable/check_text_view_group_bg">
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/rm_discrete"
+                    android:text="@string/discrete"/>
+            <main.java.com.github.jonathannye.demo.CheckableTextView
+                    style="@style/CheckableTextView"
+                    android:id="@+id/rm_cutoff"
+                    android:text="@string/cutoff"/>
+        </LinearLayout>
+        <TextView
+                style="@style/HeaderTextView"
+                android:paddingTop="16dp"
+                android:paddingBottom="4dp"
+                android:text="@string/rpatch_segments"/>
+        <HorizontalScrollView
+                style="@style/MatchWidth">
+            <LinearLayout
+                    style="@style/Wrap"
+                    android:id="@+id/patch_segment_container"
+                    android:minHeight="20dp"
+                    android:gravity="center_vertical"
+                    android:background="#333">
+            </LinearLayout>
+        </HorizontalScrollView>
     </LinearLayout>
 </ScrollView>
