@@ -48,19 +48,19 @@
         <LinearLayout
                 style="@style/MatchWidth"
                 android:background="@drawable/check_text_view_group_bg">
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/i_both"
                     android:text="@string/both"/>
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/i_x"
                     android:text="@string/x"/>
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/i_y"
                     android:text="@string/y"/>
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/i_none"
                     android:text="@string/none"/>
@@ -73,27 +73,27 @@
         <LinearLayout
                 style="@style/MatchWidth"
                 android:background="@drawable/check_text_view_group_bg">
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/o_all"
                     android:text="@string/all"/>
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/o_none"
                     android:text="@string/none"/>
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/o_left"
                     android:text="@string/left"/>
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/o_right"
                     android:text="@string/right"/>
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/o_top"
                     android:text="@string/top"/>
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/o_bottom"
                     android:text="@string/bottom"/>
@@ -106,11 +106,11 @@
         <LinearLayout
                 style="@style/MatchWidth"
                 android:background="@drawable/check_text_view_group_bg">
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/rm_discrete"
                     android:text="@string/discrete"/>
-            <main.java.com.github.jonathannye.demo.CheckableTextView
+            <com.github.jonathannye.demo.CheckableTextView
                     style="@style/CheckableTextView"
                     android:id="@+id/rm_cutoff"
                     android:text="@string/cutoff"/>
@@ -127,7 +127,8 @@
                     android:id="@+id/patch_segment_container"
                     android:minHeight="20dp"
                     android:gravity="center_vertical"
-                    android:background="#333">
+                    android:background="#333"
+                    android:orientation="horizontal">
             </LinearLayout>
         </HorizontalScrollView>
     </LinearLayout>

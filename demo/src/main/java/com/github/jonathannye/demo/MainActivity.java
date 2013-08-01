@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import main.java.com.github.jonathannye.demo.CheckableTextView;
-
 public class MainActivity extends SherlockActivity {
 
     private static final List<Integer> DRAWABLE_RES_IDS = Arrays.asList(
