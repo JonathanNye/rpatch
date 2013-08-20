@@ -25,7 +25,7 @@ public class MainActivity extends SherlockActivity {
             R.drawable.test_rpatch2,
             R.drawable.test_rpatch3,
             R.drawable.stamp,
-            R.drawable.home_backdrop_rpatch);
+            R.drawable.stripes);
     private static final List<Integer> DRAWABLE_STRING_IDS = Arrays.asList(
             R.string.dots,
             R.string.squiggles,
