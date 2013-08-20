@@ -46,7 +46,6 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src</sourceDirectory>
         <finalName>${project.artifactId}-unaligned</finalName>
 
         <plugins>
