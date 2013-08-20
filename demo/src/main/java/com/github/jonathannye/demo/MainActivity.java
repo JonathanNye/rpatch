@@ -24,12 +24,14 @@ public class MainActivity extends SherlockActivity {
             R.drawable.test_rpatch,
             R.drawable.test_rpatch2,
             R.drawable.test_rpatch3,
-            R.drawable.stamp);
+            R.drawable.stamp,
+            R.drawable.home_backdrop_rpatch);
     private static final List<Integer> DRAWABLE_STRING_IDS = Arrays.asList(
             R.string.dots,
             R.string.squiggles,
             R.string.notepad,
-            R.string.stamp);
+            R.string.stamp,
+            R.string.stripes);
 
     private int currentDrawableIndex = -1;
 
@@ -50,7 +52,6 @@ public class MainActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-
         patchContainer = findViewById(R.id.rpatch_container);
         patchView = findViewById(R.id.rpatch_view);
         nextDrawableButton = (Button) findViewById(R.id.next_drawable);
@@ -273,45 +274,6 @@ public class MainActivity extends SherlockActivity {
             iv.setImageBitmap(patch.dbgGetPatch(i));
             dbgContainer.addView(iv);
         }
-
-
-        /*int drawableId;
-        patchIdx++;
-        if (patchIdx >= 3) {
-            patchIdx = 0;
-        }
-        switch (patchIdx) {
-            case 0:
-                drawableId = R.drawable.test_rpatch;
-                break;
-            case 1:
-                drawableId = R.drawable.test_rpatch2;
-                break;
-            case 2:
-                drawableId = R.drawable.test_rpatch3;
-                break;
-            case 3:
-            default:
-                drawableId = R.drawable.test_rpatch;
-                break;
-        }
-        RPatch patch = new RPatch(this, drawableId);
-        patch.setDrawCentered(drawPatchCentered);
-        patch.setRepeatFlags(innerRepeatMode | outerRepeatMode | repeatBehavior);
-        patchView.setBackgroundDrawable(patch);
-
-        ViewGroup dbgContainer = (ViewGroup) findViewById(R.id.patch_segment_container);
-        dbgContainer.removeAllViews();
-        for (int i = 0; i < 9; i++) {
-            ImageView iv = new ImageView(this);
-            iv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-            iv.setBackgroundColor(0xffff0000);
-            iv.setPadding(10, 10, 10, 10);
-            iv.setScaleType(ImageView.ScaleType.CENTER);
-            iv.setImageBitmap(patch.dbgGetPatch(i));
-            dbgContainer.addView(iv);
-        }*/
     }
 
     public void decreaseViewSizeClicked(View v) {
