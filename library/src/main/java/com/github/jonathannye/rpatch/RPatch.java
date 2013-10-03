@@ -152,7 +152,7 @@ public class RPatch extends Drawable {
         patches[IDX_BOT_MID] = Bitmap
                 .createBitmap(srcBitmap, hLeft, vBottom + 1, midWidth, botHeight);
         patches[IDX_BOT_RIGHT] = Bitmap
-                .createBitmap(srcBitmap, hRight, vBottom + 1, rightWidth, botHeight);
+                .createBitmap(srcBitmap, hRight + 1, vBottom + 1, rightWidth, botHeight);
     }
 
     // TODO: Edge patches drawn on cutoffs are inset by one (bottom only?)
@@ -285,7 +285,7 @@ public class RPatch extends Drawable {
         p.setShader(shader);
         canvas.drawRect(topRight.left, topRight.bottom, bounds.right, botRight.top, p);
 
-        canvas.drawBitmap(patches[IDX_BOT_LEFT], bounds.left, botRight.top - 1, cornerPaint);
+        canvas.drawBitmap(patches[IDX_BOT_LEFT], bounds.left, botRight.top, cornerPaint);
 
         m.set(IDENTITY_MATRIX);
         m.postTranslate(botLeft.right, botLeft.top);
@@ -301,7 +301,7 @@ public class RPatch extends Drawable {
         p.setShader(shader);
         canvas.drawRect(botLeft.right, botLeft.top, botRight.left, botLeft.bottom, p);
 
-        canvas.drawBitmap(patches[IDX_BOT_RIGHT], botRight.left, botRight.top - 1, cornerPaint);
+        canvas.drawBitmap(patches[IDX_BOT_RIGHT], botRight.left, botRight.top, cornerPaint);
 
     }
 
