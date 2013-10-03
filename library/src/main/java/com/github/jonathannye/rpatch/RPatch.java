@@ -51,9 +51,6 @@ public class RPatch extends Drawable {
         LOAD_OPTIONS.inScaled = false;
     }
 
-    private static final Matrix IDENTITY_MATRIX = new Matrix();
-
-
     private Bitmap[] patches = new Bitmap[9];
 
     // 0 implies REPEAT_MODE_DISCRETE, REPEAT_INNER_BOTH, REPEAT_OUTER_NONE
@@ -66,6 +63,10 @@ public class RPatch extends Drawable {
     private int topHeight;
     private int midHeight;
     private int botHeight;
+    
+    private final Matrix mMatrix = new Matrix();
+    private final Paint mCornerPaint = new Paint();
+    private final Paint mPatchPaint = new Paint();
 
     public RPatch(Bitmap b) {
         parseBitmap(b);
@@ -205,14 +206,12 @@ public class RPatch extends Drawable {
                 topRight.left,
                 botLeft.top);
 
-        Paint p = new Paint();
-        Paint cornerPaint = new Paint();
         BitmapShader shader;
-        Matrix m = new Matrix();
+        mMatrix.reset();
 
-        canvas.drawBitmap(patches[IDX_TOP_LEFT], bounds.left, bounds.top, cornerPaint);
+        canvas.drawBitmap(patches[IDX_TOP_LEFT], bounds.left, bounds.top, mCornerPaint);
 
-        m.postTranslate(topLeft.right, topLeft.top);
+        mMatrix.postTranslate(topLeft.right, topLeft.top);
         if ((repeatFlags & REPEAT_OUTER_TOP) != 0) {
             shader = new BitmapShader(patches[IDX_TOP_MID], Shader.TileMode.REPEAT,
                     Shader.TileMode.CLAMP);
@@ -220,30 +219,33 @@ public class RPatch extends Drawable {
         } else {
             shader = new BitmapShader(patches[IDX_TOP_MID], Shader.TileMode.CLAMP,
                     Shader.TileMode.CLAMP);
-            m.preScale((topRight.left - topLeft.right) / (float) patches[IDX_TOP_MID].getWidth(), 1.0f);
+            mMatrix.preScale(
+                    (topRight.left - topLeft.right) / (float) patches[IDX_TOP_MID].getWidth(),
+                    1.0f);
         }
-        shader.setLocalMatrix(m);
-        p.setShader(shader);
-        canvas.drawRect(topLeft.right, topLeft.top, topRight.left, topRight.bottom, p);
+        shader.setLocalMatrix(mMatrix);
+        mPatchPaint.setShader(shader);
+        canvas.drawRect(topLeft.right, topLeft.top, topRight.left, topRight.bottom, mPatchPaint);
 
-        canvas.drawBitmap(patches[IDX_TOP_RIGHT], topRight.left, bounds.top, cornerPaint);
+        canvas.drawBitmap(patches[IDX_TOP_RIGHT], topRight.left, bounds.top, mCornerPaint);
 
-        m.set(IDENTITY_MATRIX);
-        m.postTranslate(bounds.left, topLeft.bottom);
+        mMatrix.reset();
+        mMatrix.postTranslate(bounds.left, topLeft.bottom);
         if ((repeatFlags & REPEAT_OUTER_LEFT) != 0) {
             shader = new BitmapShader(patches[IDX_MID_LEFT], Shader.TileMode.CLAMP,
                     Shader.TileMode.REPEAT);
         } else {
             shader = new BitmapShader(patches[IDX_MID_LEFT], Shader.TileMode.CLAMP,
                     Shader.TileMode.CLAMP);
-            m.preScale(1.0f, (botLeft.top - topRight.bottom) / (float) patches[IDX_MID_LEFT].getHeight());
+            mMatrix.preScale(1.0f,
+                    (botLeft.top - topRight.bottom) / (float) patches[IDX_MID_LEFT].getHeight());
         }
-        shader.setLocalMatrix(m);
-        p.setShader(shader);
-        canvas.drawRect(bounds.left, topLeft.bottom, topLeft.right, botLeft.top, p);
+        shader.setLocalMatrix(mMatrix);
+        mPatchPaint.setShader(shader);
+        canvas.drawRect(bounds.left, topLeft.bottom, topLeft.right, botLeft.top, mPatchPaint);
 
-        m.set(IDENTITY_MATRIX);
-        m.postTranslate(middle.left, middle.top);
+        mMatrix.reset();
+        mMatrix.postTranslate(middle.left, middle.top);
         switch (repeatFlags & REPEAT_INNER_BOTH) {
             case REPEAT_INNER_BOTH:
                 shader = new BitmapShader(patches[IDX_MID], Shader.TileMode.REPEAT,
@@ -252,56 +254,59 @@ public class RPatch extends Drawable {
             case REPEAT_INNER_NONE:
                 shader = new BitmapShader(patches[IDX_MID], Shader.TileMode.CLAMP,
                         Shader.TileMode.CLAMP);
-                m.preScale(middle.width() / (float) patches[IDX_MID].getWidth(),
+                mMatrix.preScale(middle.width() / (float) patches[IDX_MID].getWidth(),
                         middle.height() / (float) patches[IDX_MID].getHeight());
                 break;
             case REPEAT_INNER_Y:
                 shader = new BitmapShader(patches[IDX_MID], Shader.TileMode.CLAMP,
                         Shader.TileMode.REPEAT);
-                m.preScale(middle.width() / (float) patches[IDX_MID].getWidth(), 1.0f);
+                mMatrix.preScale(middle.width() / (float) patches[IDX_MID].getWidth(), 1.0f);
                 break;
             case REPEAT_INNER_X:
             default:
                 shader = new BitmapShader(patches[IDX_MID], Shader.TileMode.REPEAT,
                         Shader.TileMode.CLAMP);
-                m.preScale(1.0f, middle.height() / (float) patches[IDX_MID].getHeight());
+                mMatrix.preScale(1.0f, middle.height() / (float) patches[IDX_MID].getHeight());
                 break;
         }
-        shader.setLocalMatrix(m);
-        p.setShader(shader);
-        canvas.drawRect(middle, p);
+        shader.setLocalMatrix(mMatrix);
+        mPatchPaint.setShader(shader);
+        canvas.drawRect(middle, mPatchPaint);
 
-        m.set(IDENTITY_MATRIX);
-        m.postTranslate(topRight.left, topRight.bottom);
+        mMatrix.reset();
+        mMatrix.postTranslate(topRight.left, topRight.bottom);
         if ((repeatFlags & REPEAT_OUTER_RIGHT) != 0) {
             shader = new BitmapShader(patches[IDX_MID_RIGHT], Shader.TileMode.CLAMP,
                     Shader.TileMode.REPEAT);
         } else {
             shader = new BitmapShader(patches[IDX_MID_RIGHT], Shader.TileMode.CLAMP,
                     Shader.TileMode.CLAMP);
-            m.preScale(1.0f, (botRight.top - topRight.bottom) / (float) patches[IDX_MID_RIGHT].getHeight());
+            mMatrix.preScale(1.0f,
+                    (botRight.top - topRight.bottom) / (float) patches[IDX_MID_RIGHT].getHeight());
         }
-        shader.setLocalMatrix(m);
-        p.setShader(shader);
-        canvas.drawRect(topRight.left, topRight.bottom, bounds.right, botRight.top, p);
+        shader.setLocalMatrix(mMatrix);
+        mPatchPaint.setShader(shader);
+        canvas.drawRect(topRight.left, topRight.bottom, bounds.right, botRight.top, mPatchPaint);
 
-        canvas.drawBitmap(patches[IDX_BOT_LEFT], bounds.left, botRight.top, cornerPaint);
+        canvas.drawBitmap(patches[IDX_BOT_LEFT], bounds.left, botRight.top, mCornerPaint);
 
-        m.set(IDENTITY_MATRIX);
-        m.postTranslate(botLeft.right, botLeft.top);
+        mMatrix.reset();
+        mMatrix.postTranslate(botLeft.right, botLeft.top);
         if ((repeatFlags & REPEAT_OUTER_BOTTOM) != 0) {
             shader = new BitmapShader(patches[IDX_BOT_MID], Shader.TileMode.REPEAT,
                     Shader.TileMode.CLAMP);
         } else {
             shader = new BitmapShader(patches[IDX_BOT_MID], Shader.TileMode.CLAMP,
                     Shader.TileMode.CLAMP);
-            m.preScale((botRight.left - botLeft.right) / (float) patches[IDX_BOT_MID].getWidth(), 1.0f);
+            mMatrix.preScale(
+                    (botRight.left - botLeft.right) / (float) patches[IDX_BOT_MID].getWidth(),
+                    1.0f);
         }
-        shader.setLocalMatrix(m);
-        p.setShader(shader);
-        canvas.drawRect(botLeft.right, botLeft.top, botRight.left, botLeft.bottom, p);
+        shader.setLocalMatrix(mMatrix);
+        mPatchPaint.setShader(shader);
+        canvas.drawRect(botLeft.right, botLeft.top, botRight.left, botLeft.bottom, mPatchPaint);
 
-        canvas.drawBitmap(patches[IDX_BOT_RIGHT], botRight.left, botRight.top, cornerPaint);
+        canvas.drawBitmap(patches[IDX_BOT_RIGHT], botRight.left, botRight.top, mCornerPaint);
 
     }
 
