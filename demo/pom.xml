@@ -8,6 +8,7 @@
     <artifactId>demo</artifactId>
     <name>android-rpatch Demo</name>
     <packaging>apk</packaging>
+    <version>1.0-SNAPSHOT</version>
 
     <parent>
         <groupId>com.github.jonathannye.rpatch</groupId>
@@ -26,7 +27,7 @@
         <dependency>
             <groupId>com.github.jonathannye.rpatch</groupId>
             <artifactId>rpatch</artifactId>
-            <version>${project.version}</version>
+            <version>${parent.version}</version>
         </dependency>
 
         <dependency>
