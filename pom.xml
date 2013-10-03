@@ -22,7 +22,7 @@
     <url>http://github.com/JonathanNye/rpatch</url>
 
     <modules>
-        <module>library</module>
+        <module>rpatch</module>
         <module>demo</module>
     </modules>
 

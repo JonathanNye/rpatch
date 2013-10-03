@@ -25,7 +25,7 @@
 
         <dependency>
             <groupId>com.github.jonathannye.rpatch</groupId>
-            <artifactId>library</artifactId>
+            <artifactId>rpatch</artifactId>
             <version>${project.version}</version>
         </dependency>
 
