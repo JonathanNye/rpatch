@@ -8,7 +8,7 @@
     <artifactId>demo</artifactId>
     <name>android-rpatch-demo</name>
     <packaging>apk</packaging>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
 
     <parent>
         <groupId>com.github.jonathannye.rpatch</groupId>
