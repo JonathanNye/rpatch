@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>demo</artifactId>
-    <name>android-rpatch Demo</name>
+    <name>android-rpatch-demo</name>
     <packaging>apk</packaging>
     <version>1.0-SNAPSHOT</version>
 
@@ -16,6 +16,14 @@
         <version>0.9-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+
+    <properties>
+        <app.versioncode>PROVIDE_VIA_ARGS</app.versioncode>
+        <sign.keystore>rpatch_demo.keystore</sign.keystore>
+        <sign.keyalias>rpatch_demo</sign.keyalias>
+        <sign.keypass>PROVIDE_VIA_ARGS</sign.keypass>
+        <sign.storepass>PROVIDE_VIA_ARGS</sign.storepass>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -27,7 +35,7 @@
         <dependency>
             <groupId>com.github.jonathannye.rpatch</groupId>
             <artifactId>rpatch</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
 
         <dependency>
@@ -47,7 +55,7 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}-unaligned</finalName>
+        <finalName>${project.name}</finalName>
 
         <plugins>
             <plugin>
@@ -60,27 +68,75 @@
 
     <profiles>
         <profile>
-            <id>release</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
+            <id>sign</id>
             <build>
                 <plugins>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jarsigner-plugin</artifactId>
+                        <version>1.2</version>
+                        <executions>
+                            <execution>
+                                <id>signing</id>
+                                <goals>
+                                    <goal>sign</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <inherited>true</inherited>
+                                <configuration>
+                                    <removeExistingSignatures>true</removeExistingSignatures>
+                                    <archiveDirectory/>
+                                    <includes>
+                                        <include>
+                                            ${project.build.directory}/${project.build.finalName}.apk
+                                        </include>
+                                    </includes>
+                                    <keystore>${sign.keystore}</keystore>
+                                    <alias>${sign.keyalias}</alias>
+                                    <storepass>${sign.storepass}</storepass>
+                                    <keypass>${sign.keypass}</keypass>
+                                    <verbose>true</verbose>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                         <artifactId>android-maven-plugin</artifactId>
-                        <version>${android.maven.plugin.version}</version>
                         <inherited>true</inherited>
                         <configuration>
+                            <sign>
+                                <debug>false</debug>
+                            </sign>
                             <zipalign>
-                                <inputApk>${project.build.directory}/${project.build.finalName}.apk</inputApk>
-                                <outputApk>${project.build.directory}/${project.artifactId}.apk</outputApk>
+                                <skip>false</skip>
+                                <verbose>true</verbose>
+                                <inputApk>
+                                    ${project.build.directory}/${project.build.finalName}.apk
+                                </inputApk>
+                                <outputApk>
+                                    ${project.build.directory}/${project.build.finalName}-signed-aligned.apk
+                                </outputApk>
                             </zipalign>
+                            <manifest>
+                                <debuggable>false</debuggable>
+                                <versionCode>${app.versioncode}</versionCode>
+                                <versionName>${project.version}</versionName>
+                                <versionCodeAutoIncrement>false</versionCodeAutoIncrement>
+                            </manifest>
+                            <proguard>
+                                <skip>true</skip>
+                            </proguard>
                         </configuration>
                         <executions>
+                            <execution>
+                                <id>manifestUpdate</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>manifest-update</goal>
+                                </goals>
+                            </execution>
                             <execution>
                                 <id>alignApk</id>
                                 <phase>package</phase>

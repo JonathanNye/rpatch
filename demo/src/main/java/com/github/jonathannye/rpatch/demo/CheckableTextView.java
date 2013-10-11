@@ -1,4 +1,4 @@
-package com.github.jonathannye.demo;
+package com.github.jonathannye.rpatch.demo;
 
 import android.content.Context;
 import android.util.AttributeSet;

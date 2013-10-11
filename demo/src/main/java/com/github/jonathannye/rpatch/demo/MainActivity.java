@@ -1,6 +1,7 @@
-package com.github.jonathannye.demo;
+package com.github.jonathannye.rpatch.demo;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.github.jonathannye.demo.R;
 import com.github.jonathannye.rpatch.RPatch;
 
 import android.os.Bundle;
