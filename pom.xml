@@ -16,10 +16,16 @@
     <packaging>pom</packaging>
     <version>0.9-SNAPSHOT</version>
 
-    <name>android-rpatch (Parent)</name>
-    <description>9-patches with repeatable behavior.</description>
+    <name>RPatch (Parent)</name>
+    <description>Android library for creating resizable, repeating Drawables from familiar NinePatch format.</description>
     <inceptionYear>2012</inceptionYear>
     <url>http://github.com/JonathanNye/rpatch</url>
+
+    <scm>
+        <connection>scm:git:git@github.com:JonathanNye/rpatch.git</connection>
+        <developerConnection>scm:git:git@github.com:JonathanNye/rpatch.git</developerConnection>
+        <url>git@github.com:JonathanNye/rpatch.git</url>
+    </scm>
 
     <modules>
         <module>rpatch</module>
