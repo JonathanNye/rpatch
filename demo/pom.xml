@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-        xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>demo</artifactId>
     <name>android-rpatch-demo</name>
     <packaging>apk</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.9</version>
 
     <parent>
         <groupId>com.github.jonathannye.rpatch</groupId>
         <artifactId>parent</artifactId>
-        <version>0.9-SNAPSHOT</version>
+        <version>0.9</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -86,7 +83,7 @@
                                 <inherited>true</inherited>
                                 <configuration>
                                     <removeExistingSignatures>true</removeExistingSignatures>
-                                    <archiveDirectory/>
+                                    <archiveDirectory />
                                     <includes>
                                         <include>
                                             ${project.build.directory}/${project.build.finalName}.apk
