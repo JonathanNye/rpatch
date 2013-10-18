@@ -8,12 +8,12 @@
     <artifactId>demo</artifactId>
     <name>android-rpatch-demo</name>
     <packaging>apk</packaging>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
 
     <parent>
         <groupId>com.github.jonathannye.rpatch</groupId>
         <artifactId>parent</artifactId>
-        <version>0.9</version>
+        <version>0.9-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 

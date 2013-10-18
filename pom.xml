@@ -14,7 +14,7 @@
     <groupId>com.github.jonathannye.rpatch</groupId>
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.9</version>
+    <version>0.9-SNAPSHOT</version>
 
     <name>RPatch (Parent)</name>
     <description>Android library for creating resizable, repeating Drawables from familiar NinePatch format.</description>
